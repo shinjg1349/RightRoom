@@ -34,6 +34,7 @@ public class UserController {
     public String joinGET() {
     	logger.info("회원가입 페이지");
     	System.out.println("@@개인회원@@");
+    	
     	return "/user/userJoinPage";
     }
     
