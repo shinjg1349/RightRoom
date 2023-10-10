@@ -1,0 +1,283 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+.header {
+	text-align: center;
+	background-color: #f0f0f0;
+	padding: 20px;
+}
+
+.container {
+	display: flex;
+	justify-content: space-between;
+	padding: 50px 150px;
+}
+
+.left-box {
+	flex: 2;
+	padding: 50px;
+	border: 1px solid black;
+	margin-right: 50px;
+}
+
+.right-box {
+	flex: 1;
+	padding: 30px;
+	border: 1px solid black;
+	position: sticky;
+	margin-left: 80px;
+	top: 20px;
+	max-height: 50vh;
+	/* 브라우저 높이의 반 */
+	overflow-y: auto;
+	/* 스크롤이 필요한 경우 스크롤 표시 */
+}
+
+.line {
+	margin-bottom: 20px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+label {
+	display: block;
+	/* font-weight: bold; */
+}
+
+.material-symbols-sharp {
+	color: #c8c8c8;
+	font-variation-settings: 'FILL' 1, 'wght' 100, 'GRAD' 200, 'opsz' 24;
+}
+
+.input-group input[type="text"], .input-group input[type="email"],
+	.input-group input[type="number"], .input-group select, .input-group textarea
+	{
+	text-align: left;
+	/* 입력 필드를 오른쪽 정렬 */
+	/* flex: 1; */
+	/* 레이블과 입력 필드의 넓이를 동일하게 설정 */
+	width: 70%;
+	padding: 10px;
+	margin-top: 5px;
+	border: 1px solid #ccc;
+}
+
+.maintitle {
+	font-size: 18px;
+	font-weight: bold;
+	padding: 0px 15px 15px 10px;
+}
+
+.buttons {
+	display: flex;
+	/* Flexbox 레이아웃 사용 */
+	justify-content: center;
+	/* 가로 정렬 중앙 정렬 */
+	align-items: center;
+	/* 세로 정렬 중앙 정렬 */
+}
+
+.buttons button {
+	margin-right: 5px;
+	/* 버튼 사이의 간격을 조절하려면 마진을 추가*/
+	width: 150px;
+	height: 40px;
+	transition: 0.3s;
+}
+
+.buttons button:hover {
+	background: transparent;
+	box-shadow: inset 90px 0 0 0 var(--btn-bg);
+	color: black;
+	border: 1px solid #000000;
+}
+
+.reserve-button {
+	padding: 10px;
+	background-color: black;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	font-size: medium;
+}
+
+.heart-button {
+	padding: 5px;
+	background-color: black;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	font-size: x-large;
+}
+
+.input-group {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	/* 레이블과 입력 필드 간격 조절 */
+}
+
+.star {
+	color: orange;
+}
+
+.input-group label {
+	margin-right: 10px;
+	text-align: left;
+	/* 레이블을 왼쪽 정렬 */
+	flex: 1;
+	/* 레이블과 입력 필드의 넓이를 동일하게 설정 */
+}
+
+/* 행사 정보의 입력 칸과 라벨을 붙여줌. */
+.input-group+.form-group {
+	margin-top: 15px;
+}
+
+.reservation-summary {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid #ccc;
+}
+
+.reservation-summary h2 {
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+.reservation-summary p {
+	font-size: 16px;
+}
+
+.reservation-summary .buttons {
+	margin-top: 10px;
+}
+
+.table-boxes {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+
+.table-box {
+	width: calc(25% - 10px);
+	/* 네 개의 박스를 균등한 넓이로 배치 */
+	padding: 10px;
+	border: 1px solid #ccc;
+	text-align: center;
+}
+
+/* 각 박스에 대한 스타일 */
+.round {
+	background-color: #e0e0e0;
+}
+
+.rectangular {
+	background-color: #a0a0a0;
+}
+
+.custom {
+	background-color: #c0c0c0;
+}
+
+.tabla-options {
+	justify-content: center;
+	/* 텍스트를 수평 가운데 정렬 */
+	align-items: center;
+}
+
+.table-option {
+	width: 200px;
+	height: 70px;
+	border: 1px solid gray;
+	border-radius: 5px;
+	margin: 15px;
+	text-align: center;
+	/* flex: 1; */
+}
+
+#special-requests {
+	width: 90%;
+	/* 전체 넓이를 사용하도록 설정 */
+	max-width: 90%;
+	/* 최대 넓이를 전체 넓이로 설정 */
+	padding: 10px;
+	/* 내부 여백을 조절 */
+	margin-top: 5px;
+	margin-left: 20px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	display: inline-block;
+}
+
+.centered-container {
+	display: flex;
+	align-items: center;
+	justify-content: center; /* 수평 가운데 정렬을 추가합니다. */
+	margin-top: 15px;
+}
+
+.circle-icon {
+	background-color: #d2d2d2;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 10px;
+}
+
+.inner-icon {
+	font-size: 24px;
+	color: #000000;
+}
+
+.text {
+	margin: 20px;
+	padding-top: 5px;
+	font-size: 18px;
+	color: #333;
+}
+
+.box {
+	width: 15vw;
+	height: 10vh;
+	border: 0px solid gray;
+	border-radius: 5%;
+	margin: 30px;
+	box-shadow: 1px 1px 3px gray;
+	box-sizing: border-box;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	transition: background-color 0.3s;
+}
+
+.pl{
+    width: 200px;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 12px 13px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+}
+
+.contact:focus{
+    border: 1px solid #9B51E0;
+    box-sizing: border-box;
+    border-radius: 10px;
+    outline: 3px solid #F8E4FF;
+    border-radius: 10px;
+}

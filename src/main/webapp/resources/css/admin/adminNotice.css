@@ -1,0 +1,173 @@
+.maintitle {
+	padding-left: 20px;
+	text-align: center;
+	font-size: 30px;
+}
+
+.nav {
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+}
+
+.nav a {
+	text-decoration: none;
+	padding: 10px 20px;
+	border-bottom: 2px solid transparent;
+	margin: 0 50px;
+}
+
+.nav a.active {
+	color: black;
+	border-bottom: 1px solid #000; /* 활성화된 버튼에만 밑줄 스타일 적용 */
+}
+
+.search-container {
+	position: relative;
+	width: 250px; /* 검색창의 너비를 조정하세요. */
+	margin: 20px auto;
+}
+
+.search-input {
+	width: 100%;
+	padding: 10px 10px 10px 10px; /* 오른쪽에 아이콘 공간을 확보합니다. */
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+/* 아이콘 스타일링 */
+.search-icon {
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: #666;
+}
+
+.post {
+	width: 75%; /* 화면 너비의 70%만 차지하도록 설정 */
+	margin: 0 auto; /* 가운데 정렬 */
+	border-bottom: 1px solid #ccc; /* 답변창 아래 밑줄 추가 */
+	font-size: mideum;
+}
+
+.post-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: white;
+	padding: 10px;
+}
+
+.post-category {
+	color: gray;
+	width: 100px;
+}
+
+.post-title {
+	flex: 1;
+	margin: 0;
+}
+
+.post-arrow {
+	cursor: pointer;
+}
+
+.material-symbols-outlined {
+	font-family: 'Material Symbols Outlined';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 30px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+}
+
+.post-content {
+	display: none;
+	background-color: #f9f9f9;
+	padding: 20px 20px 20px 110px;
+	text-align: left;
+}
+
+.post-answer {
+	line-height: 2em
+}
+
+.post.active .post-content {
+	display: block;
+}
+
+/* 수정 및 삭제 버튼 스타일 */
+.post-actions {
+	display: flex;
+	justify-content: flex-end;
+	/* 버튼을 오른쪽 정렬 */
+	margin-top: 10px;
+	/* 버튼과 내용 사이의 간격 설정 */
+}
+
+/* 수정 및 삭제 버튼 개별 스타일 */
+.post-edit, .post-delete {
+	padding: 5px 15px;
+	background-color: white;
+	color: black;
+	border: 0.5px solid gray;
+	border-radius: 5px;
+	margin-left: 5px;
+	text-decoration: none;
+	/* 각 버튼 사이의 간격 설정 */
+}
+
+.post-add {
+/* 	margin-top: 50px; */
+	margin-right: 180px;
+	padding: 5px 15px;
+	float: right;
+	background-color: white;
+	color: black;
+	border: 0.5px solid gray;
+	border-radius: 5px;
+	text-decoration: none;
+} 
+
+.pagination {
+	text-align: center;
+	margin: 30px;
+}
+
+.pagination a {
+	display: inline-block;
+	padding: 5px 10px;
+	margin: 0 5px;
+	text-decoration: none;
+	background-color: white;
+	color: #333;
+}
+
+.pagination a.active {
+	background-color: #e7e7e7;
+	color: black;
+}
+
+.pagination a:hover {
+	background-color: #e7e7e7;
+	color: black;
+}
+
+.pagination .prev, .pagination .next {
+	font-weight: bold;
+}
+
+/* 등록 버튼 div */
+.test {
+	color: white;
+	height: 30px;
+	margin: 15px 0;
+}

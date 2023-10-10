@@ -1,0 +1,40 @@
+.modal-body {
+	text-align: center;
+	font-size: 15px;
+	margin: 20px;
+}
+
+.modal-content p {
+	font-size: 15px;
+	margin: 5px;
+	text-align: center;
+}
+
+.button:hover {
+	border-bottom: 1px solid lightgray;
+}
+
+.modal-body-P {
+	margin: 50px;
+}
+
+.modal-body-form {
+	border: 1px solid gray;
+	margin: 20px;
+	padding: 20px;
+	font-size: 10px;
+}
+
+.modal-body-form input {
+	width: 250px;
+	padding: 8px;
+	margin: 3px;
+}
+
+.nav-item a {
+	color: black;
+}
+
+.modal-body-form input[type="submit"] {
+	font-size: 13px;
+}

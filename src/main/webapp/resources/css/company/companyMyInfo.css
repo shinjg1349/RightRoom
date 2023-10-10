@@ -1,0 +1,32 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    
+}
+
+.info-item {
+    margin-bottom: 20px;
+}
+
+.sub-text {
+	font-size: smaller;
+    color: grey;
+}
+
+a.edit-link {
+    text-decoration: underline;
+    position: absolute;
+    right: 0;
+}
+
+a.delete-account {
+    position: absolute;
+    right: 0;
+    bottom: 5px;
+}
+
+.container hr {
+	margin-top: 50px;
+    margin-bottom: 100px;
+}

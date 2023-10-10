@@ -1,0 +1,87 @@
+#u_h1 {
+	display: flex;
+	justify-content: space-between; /* 양쪽 끝에 정렬 */
+	align-items: center; /* 수직 가운데 정렬 */
+}
+
+#u_select {
+	margin: 0 100px;
+}
+
+#u_h2 {
+	margin: 40px 100px;
+}
+
+/* 사용자 정의 CSS */
+/* Flexbox 레이아웃 설정 */
+#container {
+	margin: 20px 100px 40px;
+}
+
+#container p {
+	font-size: 20px;
+}
+
+/* 테이블 스타일 */
+#u_table {
+	margin: 40px 40px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 90%; /* 테이블 넓이 설정 */
+	margin: 0 auto; /* 수평 가운데 정렬 */
+}
+
+th, td {
+	padding: 10px; /* 셀 안의 내용과 셀 테두리 사이 여백 설정 */
+	border: 1px solid #ddd; /* 셀 테두리 설정 */
+}
+
+th {
+	background-color: #f2f2f2; /* 테이블 헤더 배경색 설정 */
+}
+
+/* 테이블 데이터 가운데 정렬 */
+td {
+	text-align: center;
+}
+
+/* 삭제 버튼 스타일 */
+.delete-button{
+	background-color: #f44336; /* 배경색을 빨간색(#f44336)으로 설정 */
+	color: white;
+	border: none;
+	padding: 5px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 4px;
+	width: 150px; /* 버튼 넓이를 150px로 설정 */
+}
+
+.delete-button:hover {
+	background-color: #d32f2f; /* 마우스 호버 시 배경색 변경 */
+}
+
+.delete-button2 {
+	background-color: #f44336; /* 배경색을 빨간색(#f44336)으로 설정 */
+	color: white;
+	border: none;
+	padding: 5px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+	border-radius: 4px;
+	width: 100px; /* 버튼 넓이를 100px로 설정 */
+}
+
+.delete-button2:hover {
+	background-color: #d32f2f; /* 마우스 호버 시 배경색 변경 */
+}
