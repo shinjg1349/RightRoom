@@ -38,7 +38,7 @@
 				<div class="dropdown">
 					<span id="hamburger_icon" class="material-symbols-outlined md-30" style="font-size: 3em;">menu</span>
 					<div class="dropdown_option">
-						<a href="loginPage">로그인 / 회원가입</a>
+						<a href="loginPage">로그인 / 회원가입</a> <c:out value="${userVO.user_id}" />
 						<a href="searchPlace">장소 검색</a>
 						<a href="#">고객센터</a>
 					</div>

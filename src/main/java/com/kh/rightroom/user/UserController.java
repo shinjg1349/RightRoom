@@ -2,17 +2,21 @@ package com.kh.rightroom.user;
 
 
 import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kh.rightroom.vo.*;
+import com.kh.rightroom.vo.UserVO;
 
 @Controller
 @RequestMapping(value = "/")
@@ -64,6 +68,22 @@ public class UserController {
     @RequestMapping(value = "/loginPage")
     public void loginGET() {
     	logger.info("로그인 페이지 진입");
+    }
+    
+    @RequestMapping(value = "/loginProc", method = RequestMethod.POST)
+    public String loginProc(HttpServletRequest request, String userid, String pwd) throws Exception{
+    	logger.info("userIdChk() 진입");
+    	Map userVO = userService.login(userid, pwd);
+    	logger.info("결과값 = " + userVO);
+    	
+    	if(userVO != null && !StringUtils.isEmpty(userVO.get("user_id"))) {
+    		HttpSession session = request.getSession();
+    		session.setAttribute("userVO", userVO);
+    		
+        	return "redirect:/";
+    	}else {
+    		return "forward:/loginPage";
+    	}
     }
     
     @RequestMapping(value = "/userIdChk", method = RequestMethod.POST)

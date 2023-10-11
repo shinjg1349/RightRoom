@@ -1,5 +1,7 @@
 package com.kh.rightroom.user;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,13 @@ public class UserServiceImpl implements UserService {
 	public int idCheck(String user_id) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Map login(String userid, String userPwd) throws Exception {
+		// TODO Auto-generated method stub
+		Map user = userDAO.userLogin(userid, userPwd);
+		return user;
 	}
 
 }

@@ -23,7 +23,7 @@
 
 			<div class="login_form">
 
-				<form action="<c:url value='/signInConfirm' />"
+				<form action="<c:url value='/loginProc' />"
 					name="formlogin" method="post">
 				<!-- <form action="/signInConfirm"> -->
 

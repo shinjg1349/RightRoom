@@ -151,15 +151,15 @@ src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	    	let user_email = user_email1 + "@" + user_email2;  
 	    	$("#user_email").val(user_email);
 				    	
-	        $.post('<c:url value='/userJoinPageProc' />', $('#join_form').serialize(), function (result) {
-	            // Process the response from the server
-	            if (result.resultCode == "0000") {
-	                alert('회원가입이 완료되었습니다.\n로그인 후 이용해 주세요.');
-	                location.href = '/Member/Login';
-	            } else {
-	                alert(result.resultMessage);
-	            }
-	        }, 'json');
+	    	$.post('<c:url value='/userJoinPageProc' />', $('#join_form').serialize(), function (result) {
+	    	    // Process the response from the server
+	    	    if (result.resultCode == "0000") {
+	    	        alert('회원가입이 완료되었습니다.\n로그인 후 이용해 주세요.');
+	    	        location.href = '/project/loginPage';
+	    	    } else {
+	    	        alert(result.resultMessage);
+	    	    }
+	    	}, 'json');
 	    }); // <-- Added closing parenthesis and semi-colon
 	});
 
