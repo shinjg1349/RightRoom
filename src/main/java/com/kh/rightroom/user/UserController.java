@@ -78,19 +78,39 @@ public class UserController {
     }
 
     @RequestMapping(value = "/loginProc", method = RequestMethod.POST)
-    public String loginProc(HttpServletRequest request, String userid, String pwd) throws Exception{
-    	logger.info("userIdChk() 진입");
-    	Map userVO = userService.login(userid, pwd);
-    	logger.info("결과값 = " + userVO);
+    @ResponseBody
+    public Map<String, String> loginProc(HttpServletRequest request, String userid, String pwd) throws Exception{
+    	HashMap<String, String> result = new HashMap<String, String>();
+    	String resultCode = "";
+    	String resultMessage = "";
     	
-    	if(userVO != null && !StringUtils.isEmpty(userVO.get("user_id"))) {
-    		HttpSession session = request.getSession();
-    		session.setAttribute("userVO", userVO);
-    		
-        	return "redirect:/";
-    	}else {
-    		return "forward:/project/loginPage";
+    	try {
+        	logger.info("userIdChk() 진입");
+        	Map userVO = userService.login(userid, pwd);
+        	logger.info("결과값 = " + userVO);
+        	
+        	if(userVO != null && !StringUtils.isEmpty(userVO.get("user_id"))) {
+        		HttpSession session = request.getSession();
+        		session.setAttribute("userVO", userVO);
+
+        		resultCode = "0000";
+        		resultMessage = "로그인에 성공하였습니다.";    		
+//            	return "redirect:/";
+        	}else {
+        		resultCode = "9999";
+        		resultMessage = "로그인에 실패하였습니다.";    		
+        		
+////        		return "redirect:/loginPage";
+//        		return "/login/loginPage";
+        	}
+    	}catch(Exception ex) {
+    		resultCode = "9999";
+    		resultMessage = ex.getMessage();    		
     	}
+    	
+		result.put("resultCode", resultCode);
+		result.put("resultMessage", resultMessage);
+		return result;
     }
     
     @RequestMapping(value = "/userIdChk")

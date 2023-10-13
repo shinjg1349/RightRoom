@@ -10,8 +10,30 @@
 <link href="<c:url value='/resources/css/login/loginPage.css' />" rel="stylesheet"
 	type="text/css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<script>
+	/*
+	var resultCode = "<c:out value="${resultCode}" />";
+	var resultMessage = "<c:out value="${resultMessage}" />";
 	
+	if (resultCode != "0000" && resultMessage != ""){
+		alert(resultMessage);
+	}
+	*/
+	
+	function loginForm(){
+		//document.formlogin.action="<c:url value='/loginProc' />";
+		//document.formlogin.submit();
+
+    	$.post('<c:url value='/loginProc' />', $('#formlogin').serialize(), function (result) {
+    	    if (result.resultCode == "0000") {
+    	        //alert('로그인 되었습니다.');
+    	        location.href = '<c:url value="/" />';
+    	    } else {
+    	        alert(result.resultMessage);
+    	    }
+    	}, 'json');
+    }    	
+</script>
 </head>
 <body>
 
@@ -23,14 +45,13 @@
 
 			<div class="login_form">
 
-				<form action="<c:url value='/loginProc' />"
-					name="formlogin" method="post">
+				<form id="formlogin" name="formlogin" method="post">
 				<!-- <form action="/signInConfirm"> -->
 
 					<input type="text" name="userid" placeholder="아이디" required>
 					<br> <input type="password" name="pwd" placeholder="비밀번호"
 						required> <br>
-					<button class="login-button" onclick="loginForm();">로그인</button>
+					<button type="button" class="login-button" onclick="loginForm();">로그인</button>
 				</form>
 
 			</div>
@@ -51,14 +72,4 @@
 	<jsp:include page="../modal/modal_FindIDAndPW.jsp" />
 
 </body>
-<script> 
-
-function loginForm(){
-	document.formlogin.submit();
-	
-}
-
-</script>
-
-
 </html>
