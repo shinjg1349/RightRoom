@@ -16,14 +16,25 @@
 			<div class="dropdown">
 				<span id="hamburger_icon" class="material-symbols-outlined md-30">menu</span>
 				<div class="dropdown_option">
-					<a href="loginPage">로그인 / 회원가입</a>
-					<a href="#">장소 검색</a>
-					<a href="#">고객센터</a>
+						<c:choose>
+						  <c:when test="${empty userVO.user_id}">
+						    <!-- 사용자가 로그인하지 않은 경우 -->
+						    <a href="loginPage">로그인 / 회원가입</a>
+						  </c:when>
+						  <c:otherwise>
+						    <!-- 사용자가 로그인한 경우 -->
+						    <a href="logout">로그아웃</a>
+						    <a href="userMyPage">마이페이지</a>
+						    <!-- <c:out value="${userVO.user_id}" /> -->
+						  </c:otherwise>
+						</c:choose>
+						
+						<a href="searchPlace">장소 검색</a>
+						<a href="#">고객센터</a>
 				</div>
 			</div>
 		</div>
-
-		<a href="/"> <img alt="Right Room logo"
+		<a href="<c:url value='/' />"><img alt="Right Room logo"
 			src="resources/img/rightroomLogo.png" />
 		</a>
 	</div>

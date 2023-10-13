@@ -14,19 +14,19 @@ public class UserDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public void userJoin(UserVO userVO) {
+    public int userJoin(UserVO userVO) {
         String sql = "INSERT INTO user (user_id, user_pw, user_name, user_phone, user_email, user_address, user_rank) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?)";
         
-        jdbcTemplate.update(sql, 
-            userVO.getUser_id(), 
-            userVO.getUser_pw(), 
-            userVO.getUser_name(), 
-            userVO.getUser_phone(), 
-            userVO.getUser_email(), 
-            userVO.getUser_address(), 
-            userVO.getUser_rank()
-        );
+        return jdbcTemplate.update(sql, 
+						            userVO.getUser_id(), 
+						            userVO.getUser_pw(), 
+						            userVO.getUser_name(), 
+						            userVO.getUser_phone(), 
+						            userVO.getUser_email(), 
+						            userVO.getUser_address(), 
+						            userVO.getUser_rank()
+						        );
     }
     
     public int idCheck(String user_id) {
@@ -47,4 +47,37 @@ public class UserDAO {
         	return null;
         }
     }
+    
+    public Map<String, Object> getUser(String user_id) {
+        String sql = "SELECT user_id, user_pw, user_name, user_phone, user_email, user_address, user_rank FROM USER WHERE user_id = ? ";
+        Object[] args = { user_id };
+        int[] argTypes = { java.sql.Types.VARCHAR };
+        
+        return jdbcTemplate.queryForMap(sql, args, argTypes);
+    }
+    
+    public int userModify(UserVO userVO) {
+        String sql = "UPDATE user \n"
+					+ "SET user_pw = ?, user_name = ?, user_phone = ?, user_email = ?, user_address = ?, user_rank = ? \n"
+					+ "WHERE user_id = ? ";
+        
+        return jdbcTemplate.update(sql, 
+						            userVO.getUser_pw(), 
+						            userVO.getUser_name(), 
+						            userVO.getUser_phone(), 
+						            userVO.getUser_email(), 
+						            userVO.getUser_address(), 
+						            userVO.getUser_rank(),
+						            userVO.getUser_id() 
+						        );
+    }    
+    
+    public int userDel(UserVO userVO) {
+        String sql = "DELETE FROM user WHERE user_id = ?";
+        return jdbcTemplate.update(sql, 
+	            userVO.getUser_id() 
+	        );
+    }
+    
+    
 }

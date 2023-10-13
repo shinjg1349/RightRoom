@@ -41,9 +41,9 @@ src="https://code.jquery.com/jquery-3.4.1.js"></script>
 					<dl>
 						<dt>ID<span id="star"> *</span></dt>
 						<dd>
-						<input type="text" name="user_id"
+						<input type="text" name="user_id" id="user_id"
 							placeholder="아이디 입력" required>
-							
+						<button type="button" class="IDConfirm" onclick="chkDuplicateUserId()">ID중복확인</button>	
 						<span class="id_input_1">사용 가능한 아이디입니다.</span>
 						<span class="id_input_2">아이디가 이미 존재합니다.</span>
 						
@@ -125,15 +125,41 @@ src="https://code.jquery.com/jquery-3.4.1.js"></script>
 				
 			</div>
 		<button type="button" class="btn" onclick="goBack()">가입취소</button>
-<!-- 		<input type="submit" class="join_button" data-bs-toggle="modal"
-			data-bs-target="#staticBackdrop">회원가입 -->
 			<button type="button" id="btnFormPost" class="btn btn-primary">가입하기</button>
 		</div>
 		</form>
 	</section>
+	
+	
+	
 	<jsp:include page="../include/footer.jsp" />
 
 	<script>
+	
+	
+    function chkDuplicateUserId() {
+    	var user_id = $("#user_id").val(); // 사용자가 입력한 아이디
+
+        // Ajax 요청을 보냅니다.
+        $.ajax({
+            type: "GET", // 또는 "POST"에 따라 서버에서 지원하는 메서드 사용
+            url: "<c:url value='/userIdChk'/>",  
+            data: { user_id: user_id }, // 사용자 아이디를 전송
+            success: function(response) {
+                if (response === "success") {
+                    alert("사용 가능한 아이디입니다.");
+                } else {
+                    alert("이미 사용 중인 아이디입니다.");
+                }
+            },
+            error: function() {
+                alert("서버 요청 중 오류가 발생했습니다.");
+            }
+        });
+    }
+	
+	
+	
 	$(document).ready(function () {
 	    $("#btnFormPost").click(function () {
 	    	let firstPhone1 = $("#FirstPhone1").val();
@@ -155,7 +181,13 @@ src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	    	    // Process the response from the server
 	    	    if (result.resultCode == "0000") {
 	    	        alert('회원가입이 완료되었습니다.\n로그인 후 이용해 주세요.');
-	    	        location.href = '/project/loginPage';
+	    	        
+	    	        var urlToLoad = '<c:url value="/modal_JoinSuccess" />'; // 불러올 JSP 파일의 URL
+	    	        $.get(urlToLoad, function(data) {
+	    	            // 서버에서 JSP 파일의 내용을 가져옴
+	    	            $("#modalContent").html(data); // 모달 내부에 내용을 추가
+	    	            $("#staticBackdrop").modal("show"); // 모달 창을 열기
+	    	        });
 	    	    } else {
 	    	        alert(result.resultMessage);
 	    	    }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +15,12 @@
 
 	<jsp:include page="../include/header.jsp" />
 
+	<form name="mainForm" id="mainForm" method="post" action="">
+	<input type="hidden" name="user_rank" id="user_rank" value="<c:out value="${userVO.user_rank}" />">
+	<input type="hidden" name="user_phone" id="user_phone" value="<c:out value="${userVO.user_phone}" />">
+	<input type="hidden" name="user_email" id="user_email" value="<c:out value="${userVO.user_email}" />">
+			
     <div class="container">
-    
  
 		<h1 id=h1_center>마이페이지</h1>
 		
@@ -32,11 +37,10 @@
 					<dl>
 						<dt>ID<span id="star"> *</span></dt>
 						<dd>
-						<input type="text" name="user_id"
-							placeholder="아이디 입력" required>
+						<input type="text" name="user_id" id ="user_id" placeholder="아이디 입력" required value="<c:out value="${userVO.user_id}" />" readonly="readonly">
 							
 						<!-- add onClick function -->
-						<button type="button" class="IDConfirm" onclick="chkDuplicateUserId()">ID중복확인</button>
+						<!-- <button type="button" class="IDConfirm" onclick="chkDuplicateUserId()">ID중복확인</button> -->
 						</dd>
 					</dl>
 					
@@ -67,33 +71,32 @@
 					<dl>
 						<dt>이름<span id="star"> *</span></dt>
 						<dd>
-						<input type="text" name="user_name" placeholder="이름 입력"
-							required>
+						<input type="text" name="user_name" placeholder="이름 입력" required value="<c:out value="${userVO.user_name}" />">
 						</dd>
 					</dl>
 					
 					<dl>
 						<dt>연락처<span id="star"> *</span></dt>
 						<dd>
-    					<select id="FirstPhone1" name="FirstPhone1" onchange="showInput(this)">
-        					<option value="010">010</option>
-        					<option value="writeDirectly">직접입력</option>
+    					<select  id="FirstPhone1" name="user_phone1" onchange="showInput(this)">
+        					<option value="010" <c:if test="${fn:substring(userVO.user_phone, 0, 3) == '010'}">selected</c:if> >010</option>
+        					<option value="writeDirectly" <c:if test="${fn:substring(userVO.user_phone, 0, 3) != '010'}">selected</c:if> >직접입력</option>
     					</select>
     					<div id="directInput" style="display: none;">
-							<input type="text" name="custom_phone" placeholder="직접 입력">
+							<input type="text" name="custom_phone" placeholder="직접 입력" value="<c:out value="${fn:substring(userVO.user_phone, 0, 3)}" />">
 						</div>
-    					<input type="text" maxlength="4" id="MidPhone1" name="MidPhone1"  placeholder="" value="">
-    					<input type="text" maxlength="4" id="LastPhone1" name="LastPhone1"  placeholder="" value="">
+    					<input type="text" maxlength="4" id="MidPhone1" name="user_phone2"  placeholder="" value="<c:out value="${fn:substring(userVO.user_phone, 3, 7)}" />">
+    					<input type="text" maxlength="4" id="LastPhone1" name="user_phone3"  placeholder="" value="<c:out value="${fn:substring(userVO.user_phone, 7, 11)}" />">
 						</dd>
 					</dl>
 					
 					<dl>
 						<dt>이메일<span id="star"> *</span></dt>
 						<dd>
-						<input type="email" name="email_ID" placeholder="이메일 입력" required>
+						<input type="email" name="user_email1" id="user_email1" placeholder="이메일 입력" required value="<c:out value="${fn:substring(userVO.user_email, 0, fn:indexOf(userVO.user_email, '@'))}" />">
 						<span>@</span>
 	
-						<select class="EmailAddress" name="EmailAddress"
+						<select class="EmailAddress"  name="user_email2" id="user_email2"
 							onchange="emailShowInput(this)">
 							<option value="gmail.com">gmail.com</option>
 							<option value="naver.com">naver.com</option>
@@ -101,17 +104,94 @@
 							<option value="writeDirectly">직접입력</option>
 						</select>
 						<div id="emailDirectInput" style="display: none;">
-							<input type="text" name="custom_email" placeholder="직접 입력">
+							<input type="text" name="custom_email" id="custom_email" placeholder="직접 입력">
 						</div>
 						</dd>
 					</dl>
 					
 				</div>
-				</div>
-				</div>
-		
+				<button type="button" class="btn" onclick="goBack()">취소</button>
+				<button type="button" id="btnFormPost" class="btn btn-primary" onclick="saveIt()">저장</button>		
+				<button type="button" id="btnFormPost" class="btn btn-primary" onclick="delIt()">탈퇴</button>	
+						
+		</div>
+	</div>
+	</form>
     
     <jsp:include page="../include/footer.jsp" />
     
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+
+	// 취소 버튼 누르면 브라우저의 이전 페이지로 이동
+	function goBack() {
+		window.history.back();
+	}
+	
+	
+    function saveIt() {
+    	let firstPhone1 = $("#FirstPhone1").val();
+    	if (firstPhone1 == 'writeDirectly'){
+    		firstPhone1 = $("#FirstPhone1direct").val();
+    	}
+    	let user_phone = firstPhone1 + $("#MidPhone1").val() + $("#LastPhone1").val();  
+    	$("#user_phone").val(user_phone);
+    	
+    	let user_email1 = $("#user_email1").val();
+    	let user_email2 = $("#user_email2").val();
+    	if (user_email2 == 'writeDirectly'){
+    		user_email2 = $("#custom_email").val();
+    	}
+    	let user_email = user_email1 + "@" + user_email2;  
+    	$("#user_email").val(user_email);
+			    	
+    	$.post('<c:url value='/userModifyProc' />', $('#mainForm').serialize(), function (result) {
+    	    // Process the response from the server
+    	    if (result.resultCode == "0000") {
+    	        alert('회원수정이 완료되었습니다.');
+    	        location.href = '<c:url value="/" />';
+    	    } else {
+    	        alert(result.resultMessage);
+    	    }
+    	}, 'json');
+    }    
+    
+    function delIt() {
+    	let firstPhone1 = $("#FirstPhone1").val();
+    	if (firstPhone1 == 'writeDirectly'){
+    		firstPhone1 = $("#FirstPhone1direct").val();
+    	}
+    	let user_phone = firstPhone1 + $("#MidPhone1").val() + $("#LastPhone1").val();  
+    	$("#user_phone").val(user_phone);
+    	
+    	let user_email1 = $("#user_email1").val();
+    	let user_email2 = $("#user_email2").val();
+    	if (user_email2 == 'writeDirectly'){
+    		user_email2 = $("#custom_email").val();
+    	}
+    	let user_email = user_email1 + "@" + user_email2;  
+    	$("#user_email").val(user_email);
+			    	
+    	$.post('<c:url value='/userDelProc' />', $('#mainForm').serialize(), function (result) {
+    	    // Process the response from the server
+    	    if (result.resultCode == "0000") {
+    	        alert('회원탈퇴가 완료되었습니다.');
+    	        location.href = '<c:url value="/" />';
+    	    } else {
+    	        alert(result.resultMessage);
+    	    }
+    	}, 'json');
+    }    
+    
+    
+    
+    
+    
+    
+    
+</script>
+
 </body>
 </html>

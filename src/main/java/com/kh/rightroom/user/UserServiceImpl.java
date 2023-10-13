@@ -2,6 +2,8 @@ package com.kh.rightroom.user;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int idCheck(String user_id) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return userDAO.idCheck(user_id);
 	}
 
 	@Override
@@ -32,4 +34,27 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
+	@Override
+	public int userModify(UserVO userVO, HttpSession session) throws Exception {
+		System.out.println("@@@@@@userVO : "+ userVO);
+		int retVal = userDAO.userModify(userVO);
+		if (retVal > 0) {
+			Map user = userDAO.getUser(userVO.getUser_id());
+			
+    		session.setAttribute("userVO", user);			
+		}
+		return retVal;
+	}
+	
+	@Override
+	public int userDel(UserVO userVO, HttpSession session) throws Exception {
+		System.out.println("@@@@@@userVO : "+ userVO);
+		int retVal = userDAO.userDel(userVO);
+		if (retVal > 0) {
+    		session.setAttribute("userVO", null);
+    		session.removeAttribute("userVO");
+		}
+		return retVal;
+	}
+	
 }

@@ -2,6 +2,7 @@ package com.kh.rightroom;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Handles requests for the application home page.
@@ -42,20 +44,14 @@ public class HomeController {
 	 public String companyJoinPage() {
 		 return "company/companyJoinPage";
 	 }
+
 	 
-//	 개인정보 조회/수정/탈퇴 페이지
-	 @GetMapping("/userMyInfo")
-	 public String userMyInfo() {
-		 return "user/userMyInfo";
+	 @RequestMapping(value = "/logout")
+	 public ModelAndView logout(HttpSession session) {
+	     session.invalidate();
+	     ModelAndView mv = new ModelAndView("redirect:/");
+	     return mv;
 	 }
-	 
-//	 이용내역 조회 페이지
-	 @GetMapping("/userHistoryList")
-	 public String userHistoryList() {
-		 return "user/userHistoryList";
-	 }
-	 
-	 
 	 
 	 //업체 마이페이지(여기서부터는 나한테 해당하는 부분 직접적으로 구현했음)
 
